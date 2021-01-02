@@ -28,6 +28,9 @@ app.post('/', (req, res) => {
 })
 
 app.get('/api', (req, res) => {
+	if (req.headers.token === null || typeof req.headers.token === 'undefined') {
+		return res.send({ error: true, message: 'Member not authenticated' })
+	}
 	res.set({ token: `Bearer ${Math.random()}` });
   	return res.send({ error: false, lastNames })
 })

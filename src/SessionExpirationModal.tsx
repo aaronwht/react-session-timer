@@ -25,12 +25,12 @@ const SessionExpirationModal: React.FC = () => {
       });
 
       // takes about 350 ms for modal to open
-      if (!disableModal.disabled && secondsRemaining.count <= 31 && !modalDisplayed.displayed) {
+      if (!disableModal.disabled && secondsRemaining.count === 31 && !modalDisplayed.displayed) {
         setShowModal(true);
       }
 
       if (disableModal.disabled && secondsRemaining.count === 10) disableModal.disabled = false;
-      if (!disableModal.disabled && secondsRemaining.count <= 11 && !showModal) {
+      if (!disableModal.disabled && secondsRemaining.count <= 10 && !showModal) {
         setShowModal(true);
       }
       if (secondsRemaining.count <= 0) {
