@@ -1,3 +1,5 @@
+const timerLength: number = 45;
+
 function getMember() {
   const memberInLocalStorage: string = window.localStorage.getItem('member') || '';
   if (!memberInLocalStorage) return null;
@@ -11,7 +13,7 @@ function getMember() {
     const member: any = JSON.parse(atob(memberInLocalStorage));
     const issuedSeconds: number = isNaN(member.issuedSeconds) ? 0 : member.issuedSeconds; // Convert from string to number
     const secondsSinceSignIn: number = Number(Math.floor(new Date().getTime() / 1000) - issuedSeconds);
-    const sessionLimitSeconds: number = 45; // 60 seconds * 20 minutes
+    const sessionLimitSeconds: number = timerLength;
     const sessionSecondsRemaining: Number = Number(sessionLimitSeconds - secondsSinceSignIn);
     member.sessionSecondsRemaining = sessionSecondsRemaining;
 
@@ -119,7 +121,7 @@ const extendSlidingExpiration = () => {
     );
   }
 
-  return 45;
+  return timerLength;
 };
 
 function signOut() {
