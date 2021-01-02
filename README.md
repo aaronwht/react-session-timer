@@ -1,5 +1,5 @@
 # React App with Global Session Timer
-![Session Timer](https://www.aaronwht.com/images/content/member-session.gif)
+![Session Timer](https://www.aaronwht.com/images/content/member-session.gif)  
 This React app implements a sliding global session timer.  
 
 Included is a dummy Node.js server which runs on port `3030` - this is hard-coded for simplicty.  The `server.js` file doesn't conduct authentication and is only provided so users have a working demo.
