@@ -92,7 +92,6 @@ function extendSession(resp: any) {
             memberKey: member.memberKey,
             firstName: member.firstName,
             lastName: member.lastName,
-            thumbnailSmall: member.thumbnailSmall,
             issuedSeconds: Math.floor(new Date().getTime() / 1000),
           })
         )
@@ -114,7 +113,6 @@ const extendSlidingExpiration = () => {
           memberKey: member.memberKey,
           firstName: member.firstName,
           lastName: member.lastName,
-          thumbnailSmall: member.thumbnailSmall,
           issuedSeconds: Math.floor(new Date().getTime() / 1000),
         })
       )

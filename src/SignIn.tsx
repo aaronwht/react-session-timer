@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Alert, Button, Container, Row, Col } from 'reactstrap';
-import { setMember, setToken } from './utils';
+import { getPage, setMember, setToken } from './utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +11,7 @@ const Signin: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayMessage, setDisplayMessage] = useState({ status: '', message: '' });
+  const redirectPage = getPage().replace('/signin?', '').replace('/signin', '');
   const [processing, setProcessing] = useState(false);
 
   async function submit(e: React.SyntheticEvent) {
@@ -49,6 +50,7 @@ const Signin: React.FC = () => {
 
       setTimeout(() => {
         setProcessing(false);
+        if (redirectPage !== '/') return history.push(redirectPage);
         return history.push('/');
       }, 350);
     } catch {
