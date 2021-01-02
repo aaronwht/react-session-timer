@@ -10,6 +10,9 @@ const PublicPage: React.FC = () => {
           This is a publicly accessible page.
           <br />
           <br />
+          You may not visit this <Link to='/private'>Private Page</Link> unless Signed In.
+          <br />
+          <br />
           <Link to='/signin'>Sign In</Link>
         </Col>
       </Row>

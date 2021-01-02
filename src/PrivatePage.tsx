@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import { getMember, getPage, signOut } from './utils';
 import SessionExpirationModal from './SessionExpirationModal';
 
-const Homepage: React.FC = () => {
+const PrivatePage: React.FC = () => {
   const history = useHistory();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
   useEffect(() => {
     const member = getMember();
     if (member === null) return history.push(`/signin?${getPage()}`);
-
-    setFirstName(member.firstName);
-    setLastName(member.lastName);
   }, []);
 
   return (
@@ -23,10 +18,7 @@ const Homepage: React.FC = () => {
       <Container>
         <Row>
           <Col lg={{ size: 4, offset: 4 }}>
-            Welcome {`${firstName} ${lastName}`}
-            <br />
-            <br />
-            <Link to='/private'>Private Page</Link>
+            Private page
             <br />
             <br />
             <Link to='/signin' onClick={() => signOut()}>
@@ -39,4 +31,4 @@ const Homepage: React.FC = () => {
   );
 };
 
-export default Homepage;
+export default PrivatePage;

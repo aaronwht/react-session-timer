@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const firstName = ['Aaron', 'Billy','Cam','Don','Eric','Frank','Gavin','Heather','Igor','Joanna','Kate','Lisa','Marvin','Nathanael','Oscar','Preston','Quin','Richard','Stacy','Tom','Ursula','Vicki','Will','Xin','Yari','Zach'];
 const lastName = ['Smith','Johnson','Williams','Brown','Jones','Garcia','Miller','Davis','Rodriguez','Martinez'];
 
-// Explicitly expose token header
+// Must EXPLICITLY expose token header
 app.use(cors({ exposedHeaders: ['*', 'token'] }));
 app.options('*', cors())
 app.use(bodyParser.json())

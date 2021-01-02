@@ -7,6 +7,7 @@ import Signin from './SignIn';
 import PublicPage from './PublicPage';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import PrivatePage from './PrivatePage';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       <Router>
         <Switch>
           <Route path='/public' exact={true} component={PublicPage} />
+          <Route path='/private' exact={true} component={PrivatePage} />
           <Route path='/' exact={true} component={Homepage} />
           <Route path='/signin' exact={true} component={Signin} />
         </Switch>

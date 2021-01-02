@@ -35,11 +35,10 @@ const SessionExpirationModal: React.FC = () => {
       }
       if (secondsRemaining.count <= 0) {
         if (!showModal) setShowModal(true);
-        setTimeout(() => {
-          clearInterval(allSecondsRemaining);
-          signOut();
-          return history.push('/signin?' + getPage());
-        }, 1000);
+
+        clearInterval(allSecondsRemaining);
+        signOut();
+        return history.push('/signin?' + getPage());
       }
     }, 1000);
 
