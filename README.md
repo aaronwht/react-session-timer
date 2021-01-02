@@ -12,4 +12,6 @@ In a new terminal window run `node server.js` and the `dummy` server will start 
 
 ### Notes:
 - The variable `timerLength` in `src/utils.ts` is hard-coded to `1200` seconds - 20 minutes of inactivity automatically signs a user out.
-- `SessionExpirationModal.tsx` contains configuration settings for when the Extend Session modal displays.
+- `SessionExpirationModal.tsx` contains configuration settings for modal display.
+- `PrivatePage.tsx` calls the `extendSession` function - this extends (or slides) the user's expiration time.  Some use cases require user validation with every API request.
+- The app creates two `localStorage` items; `token` and `member`.  Missing either one indicates tampering and signs the user out. 
