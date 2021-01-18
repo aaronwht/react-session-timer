@@ -59,9 +59,9 @@ app.get('/api', (req, res) => {
 
 		const payload = {
 			memberKey,
-			iss: siteName,
-			exp: Math.floor(new Date().getTime() / 1000) + 1200, // 20 minutes from now
-			iat: Date.now()
+			iss: siteName, // Issuer
+			exp: Math.floor(new Date().getTime() / 1000) + 1200, // Expiration Time - 20 minutes from now
+			iat: Date.now() // Issued At
 		}
 	
 		res.set({ token: `Bearer ${jwt.sign(payload, jwtSecretCode)}` });

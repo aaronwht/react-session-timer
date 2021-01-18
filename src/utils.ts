@@ -13,8 +13,7 @@ function getMember() {
     const member: any = JSON.parse(atob(memberInLocalStorage));
     const issuedSeconds: number = isNaN(member.issuedSeconds) ? 0 : member.issuedSeconds; // Convert from string to number
     const secondsSinceSignIn: number = Number(Math.floor(new Date().getTime() / 1000) - issuedSeconds);
-    const sessionLimitSeconds: number = timerLength;
-    const sessionSecondsRemaining: Number = Number(sessionLimitSeconds - secondsSinceSignIn);
+    const sessionSecondsRemaining: Number = Number(timerLength - secondsSinceSignIn);
     member.sessionSecondsRemaining = sessionSecondsRemaining;
 
     if (sessionSecondsRemaining <= 0) {
