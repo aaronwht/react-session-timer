@@ -1,8 +1,8 @@
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
-const app = express();
 const bodyParser = require('body-parser');
+const app = express();
 const jwt = require('jsonwebtoken');
 
 const firstNames = ['Aaron', 'Billy','Cam','Don','Eric','Frank','Gavin','Heather','Igor','Joanna','Kate','Lisa','Marvin','Nathanael','Oscar','Preston','Quin','Richard','Stacy','Tom','Ursula','Vicki','Will','Xin','Yari','Zach'];
@@ -69,7 +69,7 @@ app.get('/api', (req, res) => {
 		return res.send({ error: false, lastNames })
 	} catch (err) {
 		// token was tampered with
-		return res.send({ error: true, message: 'Please sign in again.' })
+		return res.send({ error: true, message: 'Session tampered with.' })
 	}
 })
 
