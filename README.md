@@ -10,7 +10,7 @@ Run the app locally:
 
 In a new terminal window run `node server.js` and the `dummy` server will start running.
 
-Tampering with the `token` results in an invalidates as displayed below: 
+Tampering with the `token` results in an invalidation as displayed below: 
 ![Session Timer](https://aaronwht.s3-us-west-2.amazonaws.com/images/content/jwt-tampered.gif)  
 
 ### Notes:
