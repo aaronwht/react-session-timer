@@ -7,12 +7,14 @@ import SessionExpirationModal from './SessionExpirationModal';
 const PrivatePage: React.FC = () => {
   const history = useHistory();
   const [lastNames, setLastNames] = useState([]);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const member = getMember();
     if (member === null) return history.push(`/signin?${getPage()}`);
 
     (async () => {
+      setMessage('');
       const resp = await window.fetch(`http://localhost:3030/api`, {
         headers: {
           'Content-Type': 'application/json',
@@ -24,7 +26,13 @@ const PrivatePage: React.FC = () => {
       });
       extendSession(resp);
 
-      const { lastNames } = await resp.json();
+      const data = await resp.json();
+      if (data.error) {
+        setMessage(data.message);
+        return;
+      }
+
+      const { lastNames } = data;
       setLastNames(lastNames);
     })();
   }, []);
@@ -41,6 +49,12 @@ const PrivatePage: React.FC = () => {
             </Link>
             <br />
             <br />
+            {message && (
+              <>
+                {message}
+                <br />
+              </>
+            )}
             {lastNames !== null &&
               typeof lastNames !== 'undefined' &&
               lastNames.length !== 0 &&

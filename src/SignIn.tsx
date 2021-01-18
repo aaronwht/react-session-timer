@@ -78,7 +78,7 @@ const Signin: React.FC = () => {
             <br />
             {!processing && (
               <Button block type='submit' color='primary' onClick={submit}>
-                Signin
+                Sign In
               </Button>
             )}
             {processing && (
