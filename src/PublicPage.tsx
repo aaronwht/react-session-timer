@@ -7,13 +7,12 @@ const PublicPage: React.FC = () => {
     <Container>
       <Row>
         <Col lg={{ size: 4, offset: 4 }}>
-          This is a publicly accessible page.
+          <h1>Public Page</h1>
+          <div>This is a publicly accessible page.</div>
           <br />
-          <br />
-          You may not visit this <Link to='/private'>Private Page</Link> unless Signed In.
-          <br />
-          <br />
-          <Link to='/signin'>Sign In</Link>
+          <div>
+            You cannot access this <Link to='/protected'>Protected Page</Link> unless you're Signed In.
+          </div>
         </Col>
       </Row>
     </Container>

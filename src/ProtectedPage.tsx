@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { extendSession, getMember, getPage, signOut } from './utils';
 import SessionExpirationModal from './SessionExpirationModal';
 
-const PrivatePage: React.FC = () => {
+const ProtectedPage: React.FC = () => {
   const history = useHistory();
   const [lastNames, setLastNames] = useState([]);
   const [message, setMessage] = useState('');
@@ -35,7 +35,7 @@ const PrivatePage: React.FC = () => {
       const { lastNames } = data;
       setLastNames(lastNames);
     })();
-  }, []);
+  }, [history]);
 
   return (
     <>
@@ -43,11 +43,13 @@ const PrivatePage: React.FC = () => {
       <Container>
         <Row>
           <Col lg={{ size: 4, offset: 4 }}>
-            Private page&#160;
+            <Link to='/'>Home</Link>&#160;&#160;&#160;
+            <Link to='/public'>Public Page</Link>&#160;&#160;&#160;
             <Link to='/signin' onClick={() => signOut()}>
               Sign Out
             </Link>
-            <br />
+            <h1>Protected Page</h1>
+            <div>This is a protected page, only accessible for signed in members.</div>
             <br />
             {message && (
               <>
@@ -68,4 +70,4 @@ const PrivatePage: React.FC = () => {
   );
 };
 
-export default PrivatePage;
+export default ProtectedPage;

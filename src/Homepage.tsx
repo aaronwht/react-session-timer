@@ -15,7 +15,7 @@ const Homepage: React.FC = () => {
 
     setFirstName(member.firstName);
     setLastName(member.lastName);
-  }, []);
+  }, [history]);
 
   return (
     <>
@@ -26,7 +26,9 @@ const Homepage: React.FC = () => {
             Welcome {`${firstName} ${lastName}`}
             <br />
             <br />
-            <Link to='/private'>Private Page</Link>
+            <Link to='/public'>Public Page</Link>
+            <br />
+            <Link to='/protected'>Protected Page</Link>
             <br />
             <br />
             <Link to='/signin' onClick={() => signOut()}>
