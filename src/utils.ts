@@ -1,4 +1,4 @@
-const timerLength: number = 1200;
+const timerLength: number = 45;
 
 function getMember() {
   const memberInLocalStorage: string = window.localStorage.getItem('member') || '';
