@@ -1,5 +1,5 @@
 # React App with Global Session Timer
-![Session Timer](https://www.aaronwht.com/images/content/member-session.gif)  
+![Session Timer](https://www.aaronwht.com/images/content/session-timer.gif)  
 This React app implements a sliding global session timer.  
 
 [YouTube Video](https://www.youtube.com/watch?v=EAilUy2ZprM). 
