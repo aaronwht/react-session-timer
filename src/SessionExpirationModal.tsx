@@ -40,6 +40,8 @@ const SessionExpirationModal: React.FC = () => {
         signOut();
         return history.push('/signin?' + getPage());
       }
+      // Below line will display ongoing countdown
+      // console.log(secondsRemaining.count);
     }, 1000);
 
     return () => {
