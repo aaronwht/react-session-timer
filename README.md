@@ -2,7 +2,7 @@
 ![Session Timer](https://www.aaronwht.com/images/content/session-timer.gif)  
 This React app implements a sliding global session timer.  
 
-[YouTube Video](https://www.youtube.com/watch?v=EAilUy2ZprM). 
+[Correlating YouTube Video](https://youtu.be/QApypSxJR68). 
 
 Included is a `server.js` Node.js file which runs on port `3030` and is hard-coded for simplicty.  The `server.js` file is provided to demonstrate a fully functional app out of the box.  
 
