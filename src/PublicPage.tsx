@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 
+// Architecture of this app validates signed in member against API service
+// so I'm not checking/extending the session of a signed in member on this display.
+// Would typically account for this use case for a production app.
 const PublicPage: React.FC = () => {
   return (
     <Container>

@@ -104,6 +104,13 @@ const extendSlidingExpiration = () => {
   if (!memberInLocalStorage) return 0;
 
   if (memberInLocalStorage) {
+    // Trust localStorage to extend session.
+    // Some architectures require a JWT issued from the server for security reasons.
+    // In those situations I recommend calling a route, example http://localhost:3030/extend-session,
+    // which explicitly parses existing JWT and refreshes.
+    // Relying on a server introduces a potential race condition between the member manually requesting to
+    // extend their session and the response from the server.
+
     const member: any = JSON.parse(atob(memberInLocalStorage));
     window.localStorage.setItem(
       'member',
@@ -167,7 +174,7 @@ function getQuery() {
   return query;
 }
 
-function setToken(headerToken: string) {
+function updateToken(headerToken: string) {
   if (headerToken) {
     if (headerToken.indexOf('Bearer ') >= 0) {
       const token = headerToken.split('Bearer ')[1];
@@ -176,4 +183,4 @@ function setToken(headerToken: string) {
   }
 }
 
-export { setMember, getMember, extendSession, extendSlidingExpiration, getQuery, getPage, setToken, signOut };
+export { setMember, getMember, extendSession, extendSlidingExpiration, getQuery, getPage, updateToken, signOut };

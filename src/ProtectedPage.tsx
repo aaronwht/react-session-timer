@@ -15,6 +15,7 @@ const ProtectedPage: React.FC = () => {
 
     (async () => {
       setMessage('');
+      // Hard-coded http://localhost:3030 for demo purposes
       const resp = await window.fetch(`http://localhost:3030/api`, {
         headers: {
           'Content-Type': 'application/json',
@@ -28,6 +29,8 @@ const ProtectedPage: React.FC = () => {
 
       const data = await resp.json();
       if (data.error) {
+        // Returned response could be an invalid/tampered with token
+        // Recommend having an error code and redirect member to /signin
         setMessage(data.message);
         return;
       }
@@ -51,12 +54,7 @@ const ProtectedPage: React.FC = () => {
             <h1>Protected Page</h1>
             <div>This is a protected page, only accessible for signed in members.</div>
             <br />
-            {message && (
-              <>
-                {message}
-                <br />
-              </>
-            )}
+            {message && <div>{message}</div>}
             {lastNames !== null &&
               typeof lastNames !== 'undefined' &&
               lastNames.length !== 0 &&

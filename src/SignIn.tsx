@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Alert, Button, Container, Row, Col } from 'reactstrap';
-import { getPage, setMember, setToken } from './utils';
+import { getPage, setMember, updateToken } from './utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,6 +24,7 @@ const Signin: React.FC = () => {
     setProcessing(true);
 
     try {
+      // Hard-coded http://localhost:3030 for demo purposes
       const resp = await window.fetch(`http://localhost:3030`, {
         method: 'POST',
         headers: {
@@ -40,7 +41,7 @@ const Signin: React.FC = () => {
         return setDisplayMessage({ status: 'danger', message: data.message });
       }
 
-      setToken(resp.headers.get('token') || '');
+      updateToken(resp.headers.get('token') || '');
 
       const member: any = {};
       member.memberKey = data.memberKey;

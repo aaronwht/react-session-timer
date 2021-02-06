@@ -13,6 +13,10 @@ const Homepage: React.FC = () => {
     const member = getMember();
     if (member === null) return history.push(`/signin?${getPage()}`);
 
+    // You could elect to trust the localStorage keys and extend
+    // a member's session here by calling extendSlidingExpiration from utils.
+    // Some architectures require a JWT refresh from the server for security reasons.
+
     setFirstName(member.firstName);
     setLastName(member.lastName);
   }, [history]);
@@ -23,7 +27,7 @@ const Homepage: React.FC = () => {
       <Container>
         <Row>
           <Col lg={{ size: 4, offset: 4 }}>
-            Welcome {`${firstName} ${lastName}`}
+            Welcome {`${firstName + ' ' + lastName}`}
             <br />
             <br />
             <Link to='/public'>Public Page</Link>

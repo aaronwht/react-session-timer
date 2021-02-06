@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useImmer } from 'use-immer';
 import { Button, Modal, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -12,28 +11,26 @@ const SessionExpirationModal: React.FC = () => {
   const history = useHistory();
 
   const [showModal, setShowModal] = useState(false);
-  const [secondsRemaining, setSecondsRemaining] = useImmer({ count: getSecondsRemaining() });
+  const [secondsRemaining, setSecondsRemaining] = useState(getSecondsRemaining());
 
   const [sessionExpired, setSessionExpired] = useState(false);
-  const [disableModal] = useImmer({ disabled: false });
-  const [modalDisplayed] = useImmer({ displayed: false });
+  const [disableModal, setDisableModal] = useState(false);
+  const [modalDisplayed] = useState(false);
 
   useEffect(() => {
     let allSecondsRemaining = setInterval(() => {
-      setSecondsRemaining((draft) => {
-        draft.count = getSecondsRemaining();
-      });
+      setSecondsRemaining(getSecondsRemaining());
 
       // takes about 350 ms for modal to open
-      if (!disableModal.disabled && secondsRemaining.count === 31 && !modalDisplayed.displayed) {
+      if (!disableModal && secondsRemaining === 31 && !modalDisplayed) {
         setShowModal(true);
       }
 
-      if (disableModal.disabled && secondsRemaining.count === 10) disableModal.disabled = false;
-      if (!disableModal.disabled && secondsRemaining.count <= 10 && !showModal) {
+      if (disableModal && secondsRemaining === 10) setDisableModal(false);
+      if (!disableModal && secondsRemaining <= 10 && !showModal) {
         setShowModal(true);
       }
-      if (secondsRemaining.count <= 0) {
+      if (secondsRemaining <= 0) {
         if (!showModal) setShowModal(true);
 
         clearInterval(allSecondsRemaining);
@@ -41,7 +38,7 @@ const SessionExpirationModal: React.FC = () => {
         return history.push('/signin?' + getPage());
       }
       // Below line will display ongoing countdown
-      // console.log(secondsRemaining.count);
+      // console.log(secondsRemaining);
     }, 1000);
 
     return () => {
@@ -64,18 +61,16 @@ const SessionExpirationModal: React.FC = () => {
       return history.push('/signin?' + getPage());
     }
 
-    setSecondsRemaining((draft) => {
-      draft.count = seconds;
-    });
+    setSecondsRemaining(seconds);
 
     setShowModal(false);
   };
 
   const disableModalCheck = () => {
-    disableModal.disabled = true;
+    setDisableModal(true);
     toggle();
 
-    if (secondsRemaining.count < 10) disableModal.disabled = true;
+    if (secondsRemaining < 10) setDisableModal(true);
   };
 
   return (
@@ -93,11 +88,11 @@ const SessionExpirationModal: React.FC = () => {
         </>
       )}
 
-      {!sessionExpired && secondsRemaining.count > 0 && (
+      {!sessionExpired && secondsRemaining > 0 && (
         <>
           <ModalHeader toggle={toggle}>Extend Session?</ModalHeader>
           <div className='text-center pt-2 pb-2'>
-            {`${secondsRemaining.count} ${secondsRemaining.count > 1 ? 'seconds remaining.' : 'second remaining.'}`}
+            {`${secondsRemaining} ${secondsRemaining > 1 ? 'seconds remaining.' : 'second remaining.'}`}
             <br />
             <br />
             <Button color='primary' onClick={() => extendPageSession()}>
@@ -110,7 +105,7 @@ const SessionExpirationModal: React.FC = () => {
           </div>
         </>
       )}
-      {!sessionExpired && secondsRemaining.count < 1 && (
+      {!sessionExpired && secondsRemaining < 1 && (
         <div className='text-center pt-2 pb-2'>
           Signing Out...
           <br />

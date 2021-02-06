@@ -4,9 +4,9 @@ import React from 'react';
 import Homepage from './Homepage';
 import Signin from './SignIn';
 import PublicPage from './PublicPage';
+import ProtectedPage from './ProtectedPage';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import ProtectedPage from './ProtectedPage';
 
 const App: React.FC = () => {
   return (

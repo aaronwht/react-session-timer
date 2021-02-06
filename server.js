@@ -9,6 +9,7 @@ const firstNames = ['Aaron', 'Billy','Cam','Don','Eric','Frank','Gavin','Heather
 const lastNames = ['Smith','Johnson','Williams','Brown','Jones','Garcia','Miller','Davis','Rodriguez','Martinez'];
 
 // Hard-coded for demo purposes only - siteName and jwtSecretCode should be saved in environment variables
+// example in .env file: jwtSecretCode=Whatever_value@_%you_want!
 const siteName = 'your_site_name';
 const jwtSecretCode = 'include_numbers_special_characters_here';
 
